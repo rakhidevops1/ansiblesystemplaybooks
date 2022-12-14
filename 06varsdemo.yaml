@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  vars:
+   env: dev 
+  vars_files:
+   - "{{env}}_vars.yaml"
+  tasks:
+   - name: Install Apache HTTP Server
+     yum: 
+      name: httpd
+      state: present
+   - name: Start the Apache HTTP Server
+     service:
+       name: httpd
+       state: started
+   - name: Copy index.html
+     template:
+      src: index.html
+      dest: /var/www/html/index.html
+...
+
+#ansible-playbook varsdemo.yaml
+#ansible-playbook varsdemo.yaml -e env=prod
+#ansible-playbook varsdemo.yaml -e env=dev

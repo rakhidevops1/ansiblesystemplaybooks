@@ -1,0 +1,21 @@
+---
+- hosts: all
+# To execute as a root user, we need to add the become: true
+  become: true  
+  vars:
+   companyName: RakeshS
+   location: India
+  tasks:
+   - name: Install Apache HTTP Server
+     yum: 
+      name: httpd
+      state: present
+   - name: Start the Apache HTTP Server
+     service:
+       name: httpd
+       state: started
+   - name: Copy index.html
+     copy:
+      src: index.html
+      dest: /var/www/html/index.html
+...

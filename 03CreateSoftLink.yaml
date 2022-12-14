@@ -1,0 +1,9 @@
+---
+- hosts: all
+  tasks: 
+   - name: Creating the file
+     file: 
+      src: /tmp/rakesh.txt
+      dest: /tmp/slfile.txt
+      state: link
+...

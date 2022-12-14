@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Install Apache HttpServer
+    yum:
+     name: httpd
+     state: present
+    tags:
+     - install
+  - name: Start the Apache HTTP Server
+    service:
+       name: httpd
+       state: restart
+    tags:
+     - restart
+     - install   
+  - name: Copy index.html
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+    tags:
+     - copy
+     - install    
+...

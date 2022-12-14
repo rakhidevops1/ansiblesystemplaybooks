@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - name: Creating a file
+      file:
+        path: /tmp/rakesh.txt
+        owner: ansible
+        group: ansible
+        mode: 0777
+        state: touch
+...        
